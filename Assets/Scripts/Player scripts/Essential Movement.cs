@@ -1,5 +1,7 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class EssentialMovement : MonoBehaviour
 {
@@ -8,48 +10,107 @@ public class EssentialMovement : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
-    Vector2 MoveInput;
-    Vector3 MoveDir;
-    Vector3 JumpDir;
+    Vector3 MoveInput;
+    Vector3 DesiredMoveDir;
+    
 
-    [SerializeField]
-    InputActionReference Move;
-    InputActionReference Jump;
+    
+    PlayerInput playerInput;
+    InputAction MoveAction;
+    InputAction JumpAction;
+    InputAction DashAction;
 
     //Movement Options
     [Header("Movement Options")]
     [SerializeField]
     float MoveSpeed;
     [SerializeField]
-    bool IsGrounded;
+    float MaxMoveSpeed;
+    //[SerializeField]
+    //int JumpCount;
     [SerializeField]
-    int JumpCount;
+    float JumpForce;
+    [SerializeField]
+    float DashForce;
+
+    //Do not touch ever
+    public bool DeShittifyDash = false;
 
 
-   
-    
+    [SerializeField]
+    CinemachineCamera Cam;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        JumpDir = new Vector3(0, 10, 0);
+        //Assigning the player input and actions
+        playerInput = GetComponent<PlayerInput>();
+        MoveAction = playerInput.actions["Move"];
+        JumpAction = playerInput.actions["Jump"];
+        DashAction = playerInput.actions["Dash"];
     }
     // Update is called once per frame
     void Update()
     {
-        MoveInput = Move.action.ReadValue<Vector2>();
+       
+        MovePlayer();
+        if(rb.linearVelocity.magnitude > MaxMoveSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * MaxMoveSpeed;
+        }
+
+    }
+
+    //Ground check
+    private bool GetIsGrounded()
+    {
+        return (Physics.Raycast(transform.position, Vector3.down, 1.1f, LayerMask.GetMask("Ground")));
+
 
     }
 
     void FixedUpdate()
     {
-        if(Jump.action.triggered && IsGrounded)
-        {
-            rb.AddForce(JumpDir, ForceMode.Impulse);
-        }
-        MoveDir = new Vector3(MoveInput.x, 0, MoveInput.y);
-        rb.AddForce(MoveDir * MoveSpeed, ForceMode.Acceleration);
+       
+  
+        
     }
 
+    void MovePlayer()
+    {
+        MoveInput = MoveAction.ReadValue<Vector3>();
+        Vector3 CamF = Cam.transform.forward;
+        Vector3 CamR = Cam.transform.right;
+
+        DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
+        if (GetIsGrounded())
+        {
+            rb.AddForce(DesiredMoveDir * MoveSpeed, ForceMode.Acceleration);
+        } else {
+            rb.AddForce(DesiredMoveDir * MoveSpeed * 0.5f, ForceMode.Acceleration);
+        }
+
+        if (JumpAction.triggered && GetIsGrounded())
+        {
+            rb.AddForce(0, JumpForce, 0, ForceMode.Impulse);
+        }
+
+        if (DashAction.triggered)
+        {
+            //normal dash
+            if (DeShittifyDash)
+            {
+                rb.AddForce(DesiredMoveDir * DashForce, ForceMode.Impulse);
+            }
+
+            //garbo dash
+            else
+            {
+                rb.AddForce(DesiredMoveDir * DashForce * 0.3f, ForceMode.Impulse);
+            }
+        }
+    }
+    
 
    
 }
