@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,6 +36,7 @@ public class EssentialMovement : MonoBehaviour
 
     //Do not touch ever
     public bool DeShittifyDash = false;
+    public bool dashReset = true;
 
 
     [SerializeField]
@@ -65,8 +67,6 @@ public class EssentialMovement : MonoBehaviour
     private bool GetIsGrounded()
     {
         return (Physics.Raycast(transform.position, Vector3.down, 1.1f, LayerMask.GetMask("Ground")));
-
-
     }
 
     void FixedUpdate()
@@ -93,10 +93,12 @@ public class EssentialMovement : MonoBehaviour
         if (JumpAction.triggered && GetIsGrounded())
         {
             rb.AddForce(0, JumpForce, 0, ForceMode.Impulse);
+            dashReset = true;
         }
 
-        if (DashAction.triggered)
+        if (DashAction.triggered && dashReset == true)
         {
+            dashReset = false;
             //normal dash
             if (DeShittifyDash)
             {
@@ -106,12 +108,25 @@ public class EssentialMovement : MonoBehaviour
             //garbo dash
             else
             {
-                rb.AddForce(DesiredMoveDir * DashForce * 0.3f, ForceMode.Impulse);
+                rb.AddForce(DesiredMoveDir * DashForce * 0.4f, ForceMode.Impulse);
             }
         }
     }
-    
 
-   
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(collision.transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(null);
+        }
+    }
 }
-
