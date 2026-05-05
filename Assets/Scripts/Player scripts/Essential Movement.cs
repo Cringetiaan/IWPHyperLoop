@@ -36,7 +36,7 @@ public class EssentialMovement : MonoBehaviour
 
     //Do not touch ever
     public bool DeShittifyDash = false;
-    public bool dashReset = true;
+    bool dashReset = true;
 
 
     [SerializeField]
@@ -61,6 +61,8 @@ public class EssentialMovement : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * MaxMoveSpeed;
         }
 
+
+
     }
 
     //Ground check
@@ -82,6 +84,9 @@ public class EssentialMovement : MonoBehaviour
         Vector3 CamF = Cam.transform.forward;
         Vector3 CamR = Cam.transform.right;
 
+        CamF.y = 0;
+        CamR.y = 0;
+
         DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
         if (GetIsGrounded())
         {
@@ -92,7 +97,7 @@ public class EssentialMovement : MonoBehaviour
 
         if (JumpAction.triggered && GetIsGrounded())
         {
-            rb.AddForce(0, JumpForce, 0, ForceMode.Impulse);
+            rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
             dashReset = true;
         }
 
@@ -102,15 +107,27 @@ public class EssentialMovement : MonoBehaviour
             //normal dash
             if (DeShittifyDash)
             {
-                rb.AddForce(DesiredMoveDir * DashForce, ForceMode.Impulse);
+                rb.AddForce(DesiredMoveDir * DashForce, ForceMode.VelocityChange);
+
+                rb.useGravity = false;
+                Invoke(nameof(ResetGrav), 0.25f);
             }
 
             //garbo dash
             else
             {
-                rb.AddForce(DesiredMoveDir * DashForce * 0.4f, ForceMode.Impulse);
+                rb.AddForce(DesiredMoveDir * DashForce * 0.4f, ForceMode.VelocityChange);
+
+                rb.useGravity = false;
+                Invoke(nameof(ResetGrav), 0.15f);
             }
         }
+    }
+
+
+    void ResetGrav()
+    {
+        rb.useGravity = true;
     }
 
 
