@@ -12064,7 +12064,7 @@ GameObject:
   - component: {fileID: 253876145}
   - component: {fileID: 253876144}
   - component: {fileID: 253876143}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17956,7 +17956,7 @@ GameObject:
   - component: {fileID: 417832731}
   - component: {fileID: 417832730}
   - component: {fileID: 417832729}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19100,7 +19100,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448024491}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4c4405472c10ca245b1d9ff5e14d9dcd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -28497,8 +28497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EssentialMovement
   rb: {fileID: 669094313}
-  MoveSpeed: 5
-  MaxMoveSpeed: 20
+  MoveSpeed: 20
+  MaxMoveSpeed: 100
   JumpForce: 15
   DashForce: 20
   DeShittifyDash: 0
@@ -28531,7 +28531,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669094308}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f578737aa28b63949938a09257576307, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

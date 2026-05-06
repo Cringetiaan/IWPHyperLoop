@@ -6,7 +6,6 @@ using UnityEngine.Rendering.Universal;
 
 public class EssentialMovement : MonoBehaviour
 {
-
     //Essentials
     [SerializeField]
     Rigidbody rb;
@@ -34,6 +33,11 @@ public class EssentialMovement : MonoBehaviour
     [SerializeField]
     float DashForce;
 
+
+    bool moveGrounded = false;
+    bool jumpTrigger = false;
+
+
     //Do not touch ever
     public bool DeShittifyDash = false;
     bool dashReset = true;
@@ -54,13 +58,18 @@ public class EssentialMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
+        ReadInput();
+        
+    }
+
+    void FixedUpdate()
+    {
         MovePlayer();
-        if(rb.linearVelocity.magnitude > MaxMoveSpeed)
+        if (rb.linearVelocity.magnitude > MaxMoveSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * MaxMoveSpeed;
         }
-
 
 
     }
@@ -71,14 +80,7 @@ public class EssentialMovement : MonoBehaviour
         return (Physics.Raycast(transform.position, Vector3.down, 1.1f, LayerMask.GetMask("Ground")));
     }
 
-    void FixedUpdate()
-    {
-       
-  
-        
-    }
-
-    void MovePlayer()
+    void ReadInput()
     {
         MoveInput = MoveAction.ReadValue<Vector3>();
         Vector3 CamF = Cam.transform.forward;
@@ -90,15 +92,14 @@ public class EssentialMovement : MonoBehaviour
         DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
         if (GetIsGrounded())
         {
-            rb.AddForce(DesiredMoveDir * MoveSpeed, ForceMode.Acceleration);
+            moveGrounded = true;
         } else {
-            rb.AddForce(DesiredMoveDir * MoveSpeed * 0.5f, ForceMode.Acceleration);
+            moveGrounded = false;
         }
 
         if (JumpAction.triggered && GetIsGrounded())
         {
-            rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
-            dashReset = true;
+            jumpTrigger = true;
         }
 
         if (DashAction.triggered && dashReset == true)
@@ -124,6 +125,23 @@ public class EssentialMovement : MonoBehaviour
         }
     }
 
+    void MovePlayer() 
+    {
+        if (moveGrounded == true) 
+        {
+            rb.AddForce(DesiredMoveDir * MoveSpeed, ForceMode.Acceleration);
+        } else
+        {
+            rb.AddForce(DesiredMoveDir * MoveSpeed * 0.5f, ForceMode.Acceleration);
+        }
+
+        if (jumpTrigger == true)
+        {
+            jumpTrigger = false;
+            rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
+            dashReset = true;
+        }
+    }
 
     void ResetGrav()
     {
