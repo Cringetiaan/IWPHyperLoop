@@ -10,8 +10,15 @@ public class TEMPLeverScript : MonoBehaviour
     [SerializeField]
     GameObject player;
 
+    [SerializeField]
+    GameObject bridge;
+
     PlayerInput playerInput;
     InputAction Interact;
+
+
+    [SerializeField]
+    GameObject killPlat;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,6 +50,10 @@ public class TEMPLeverScript : MonoBehaviour
             if(Interact.triggered)
             {
                 player.GetComponent<EssentialMovement>().DeShittifyDash = true;
+
+                bridge.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                killPlat.SetActive(false);
 
             }
         }
