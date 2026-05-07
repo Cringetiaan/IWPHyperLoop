@@ -9,6 +9,7 @@ public class Dialoguemanager : MonoBehaviour
     [Header("Insert files below")]
     [SerializeField]
     TextAsset dialogueFile;
+    GameObject ThisPrefab;
 
     List<string> CurrentDialogueWindow = new List<string>();
 
@@ -27,10 +28,10 @@ public class Dialoguemanager : MonoBehaviour
 
 
     //Audio source for voice lines - changed often
-    [SerializeField]
-    AudioClip[] SoundList;
-    [SerializeField]
-    AudioSource audioSource;
+    //[SerializeField]
+    //AudioClip[] SoundList;
+    //[SerializeField]
+    //AudioSource audioSource;
 
     public class DialogueWindow
     {
@@ -40,6 +41,7 @@ public class Dialoguemanager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ThisPrefab = this.gameObject;
         DialogueProgression = playerInput.actions["Interact"];
         CurrentDialogueWindow = new List<string>(dialogueFile.text.Split('\n'));
         
@@ -51,8 +53,12 @@ public class Dialoguemanager : MonoBehaviour
         dialogueText.text = CurrentDialogueWindow[dialogueCount];
         if (DialogueProgression.triggered)
         {
-            audioSource.PlayOneShot(SoundList[dialogueCount]);
+            //audioSource.PlayOneShot(SoundList[dialogueCount]);
             dialogueCount++;
+            if (dialogueCount >= CurrentDialogueWindow.Count)
+            {
+                ThisPrefab.SetActive(false);
+            }
         }
     }
 

@@ -46,6 +46,9 @@ public class EssentialMovement : MonoBehaviour
     [SerializeField]
     CinemachineCamera Cam;
 
+    [SerializeField]
+    MeshFilter model;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,6 +72,11 @@ public class EssentialMovement : MonoBehaviour
         if (rb.linearVelocity.magnitude > MaxMoveSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * MaxMoveSpeed;
+        }
+
+        if (DesiredMoveDir.magnitude != 0f)
+        {
+            model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));
         }
 
 

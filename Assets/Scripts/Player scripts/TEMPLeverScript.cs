@@ -13,6 +13,10 @@ public class TEMPLeverScript : MonoBehaviour
     PlayerInput playerInput;
     InputAction Interact;
 
+    //Dialogue window
+    [SerializeField]
+    GameObject FacilityDiaolouge;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +47,8 @@ public class TEMPLeverScript : MonoBehaviour
             if(Interact.triggered)
             {
                 player.GetComponent<EssentialMovement>().DeShittifyDash = true;
+                FacilityDiaolouge.SetActive(true);
+
 
             }
         }

@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4932737578380026526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3, y: -133}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -3, y: 64.5}
+  m_SizeDelta: {x: 764, y: 395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3690520164306457045
 CanvasRenderer:
@@ -107,9 +107,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4932737578380026526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -333, y: -91}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -333, y: 106}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3709386715550833895
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -622.40546, w: -74.14722}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275248882876165546}
-  - component: {fileID: 7418199771687574619}
+  - component: {fileID: 8348410933494641822}
   m_Layer: 0
   m_Name: Dialogue window prefab
   m_TagString: Untagged
@@ -379,7 +379,7 @@ Transform:
   - {fileID: 4932737578380026526}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7418199771687574619
+--- !u!114 &8348410933494641822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,13 +398,11 @@ MonoBehaviour:
     m_Name: Dialogue Progression
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 122e1ef4-5453-43a6-a10c-56d58c28dd0a
+    m_Id: 911689e3-fade-4b07-8342-812f505e46a1
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  SoundList: []
-  audioSource: {fileID: 825860585296440887}
 --- !u!1 &3249429484988214813
 GameObject:
   m_ObjectHideFlags: 0
