@@ -33,13 +33,9 @@ public class EssentialMovement : MonoBehaviour
     [SerializeField]
     float DashForce;
 
-    [SerializeField]
-    MeshFilter model;
-
 
     bool moveGrounded = false;
     bool jumpTrigger = false;
-    bool dashTrigger = false;
 
 
     //Do not touch ever
@@ -62,7 +58,9 @@ public class EssentialMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         ReadInput();
+        
     }
 
     void FixedUpdate()
@@ -73,10 +71,7 @@ public class EssentialMovement : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * MaxMoveSpeed;
         }
 
-        if (DesiredMoveDir.magnitude != 0f)
-        {
-            model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));
-        }
+
     }
 
     //Ground check
@@ -98,9 +93,7 @@ public class EssentialMovement : MonoBehaviour
         if (GetIsGrounded())
         {
             moveGrounded = true;
-        } 
-        else 
-        {
+        } else {
             moveGrounded = false;
         }
 
@@ -111,32 +104,6 @@ public class EssentialMovement : MonoBehaviour
 
         if (DashAction.triggered && dashReset == true)
         {
-            dashTrigger = true;
-        }
-    }
-
-    void MovePlayer() 
-    {
-        if (moveGrounded == true) 
-        {
-            rb.AddForce(DesiredMoveDir * MoveSpeed, ForceMode.Acceleration);
-        } 
-        else
-        {
-            rb.AddForce(DesiredMoveDir * MoveSpeed * 0.5f, ForceMode.Acceleration);
-        }
-
-        if (jumpTrigger == true)
-        {
-            jumpTrigger = false;
-            rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
-            dashReset = true;
-        }
-
-        if (dashTrigger == true)
-        {
-            dashTrigger = false;
-
             dashReset = false;
             //normal dash
             if (DeShittifyDash)
@@ -150,11 +117,29 @@ public class EssentialMovement : MonoBehaviour
             //garbo dash
             else
             {
-                rb.AddForce(DesiredMoveDir * DashForce * 0.6f, ForceMode.VelocityChange);
+                rb.AddForce(DesiredMoveDir * DashForce * 0.4f, ForceMode.VelocityChange);
 
                 rb.useGravity = false;
                 Invoke(nameof(ResetGrav), 0.15f);
             }
+        }
+    }
+
+    void MovePlayer() 
+    {
+        if (moveGrounded == true) 
+        {
+            rb.AddForce(DesiredMoveDir * MoveSpeed, ForceMode.Acceleration);
+        } else
+        {
+            rb.AddForce(DesiredMoveDir * MoveSpeed * 0.5f, ForceMode.Acceleration);
+        }
+
+        if (jumpTrigger == true)
+        {
+            jumpTrigger = false;
+            rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
+            dashReset = true;
         }
     }
 

@@ -31,8 +31,6 @@ public class PlatformMove : MonoBehaviour
 
             if (Platform.transform.position == P1.transform.position)
             {
-                //Invoke(nameof(P2Delay), 2f);
-
                 P2Pos = false;
                 P1Pos = true;
             }
@@ -43,24 +41,10 @@ public class PlatformMove : MonoBehaviour
             Platform.transform.position = Vector3.MoveTowards(Platform.transform.position, P2.transform.position, Speed * Time.deltaTime);
             if (Platform.transform.position == P2.transform.position)
             {
-                //Invoke(nameof(P1Delay), 2f);
-
                 P1Pos = false;
                 P2Pos = true;
             }
         }
 
     }
-
-    //void P2Delay()
-    //{
-    //    P2Pos = !P2Pos;
-    //    P1Pos = !P1Pos;
-    //}
-
-    //void P1Delay()
-    //{
-    //    P1Pos = !P1Pos;
-    //    P2Pos = !P2Pos;
-    //}
 }

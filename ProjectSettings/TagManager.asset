@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Ground
   - Platform
-  - Abyss
-  - Checkpoint
   layers:
   - Default
   - TransparentFX
