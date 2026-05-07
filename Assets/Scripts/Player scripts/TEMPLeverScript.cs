@@ -10,6 +10,11 @@ public class TEMPLeverScript : MonoBehaviour
     [SerializeField]
     GameObject player;
 
+    [SerializeField]
+    GameObject bridge;
+
+
+
     PlayerInput playerInput;
     InputAction Interact;
 
@@ -49,7 +54,7 @@ public class TEMPLeverScript : MonoBehaviour
                 player.GetComponent<EssentialMovement>().DeShittifyDash = true;
                 FacilityDiaolouge.SetActive(true);
 
-
+                bridge.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
     }
