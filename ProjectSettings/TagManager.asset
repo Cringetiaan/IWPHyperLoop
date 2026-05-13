@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Abyss
   - Checkpoint
+  - Plug
   layers:
   - Default
   - TransparentFX
