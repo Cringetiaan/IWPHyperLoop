@@ -15684,10 +15684,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.7
+  m_Radius: 0.41101837
+  m_Height: 1.8660531
   m_Direction: 1
-  m_Center: {x: 0, y: 0.018776715, z: 0}
+  m_Center: {x: 0, y: -0.064249754, z: -0.007347107}
 --- !u!114 &669094318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35540,7 +35540,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501429811}
-  m_Mesh: {fileID: -3266571708187791485, guid: bea845a3e4e0d2145ac065e5509de751, type: 3}
+  m_Mesh: {fileID: 8164181630094198466, guid: e26aae0608359584bac46697e1b36572, type: 3}
 --- !u!1001 &1503729275
 PrefabInstance:
   m_ObjectHideFlags: 0
