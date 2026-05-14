@@ -9,6 +9,7 @@ TagManager:
   - Abyss
   - Checkpoint
   - Plug
+  - ElectricityCheck
   layers:
   - Default
   - TransparentFX
