@@ -19,6 +19,7 @@ public class EssentialMovement : MonoBehaviour
     InputAction MoveAction;
     InputAction JumpAction;
     InputAction DashAction;
+    InputAction InteractAction;
 
     //Movement Options
     [Header("Movement Options")]
@@ -49,6 +50,9 @@ public class EssentialMovement : MonoBehaviour
     [SerializeField]
     MeshFilter model;
 
+    //Level2 mechanic
+    public Globalvariables PolarityVar;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,6 +61,8 @@ public class EssentialMovement : MonoBehaviour
         MoveAction = playerInput.actions["Move"];
         JumpAction = playerInput.actions["Jump"];
         DashAction = playerInput.actions["Dash"];
+        InteractAction = playerInput.actions["Interact"];
+
     }
     // Update is called once per frame
     void Update()
@@ -130,6 +136,19 @@ public class EssentialMovement : MonoBehaviour
                 rb.useGravity = false;
                 Invoke(nameof(ResetGrav), 0.15f);
             }
+        }
+
+        if (InteractAction.triggered)
+        {
+            if(PolarityVar.PlusPolarity)
+            {
+                PolarityVar.PlusPolarity = false;
+            }
+            else
+            {
+                PolarityVar.PlusPolarity = true;
+            }
+           
         }
     }
 
