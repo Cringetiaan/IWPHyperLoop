@@ -47,7 +47,7 @@ public class EssentialMovement : MonoBehaviour
     CinemachineCamera Cam;
 
     [SerializeField]
-    MeshFilter model;
+    GameObject model;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

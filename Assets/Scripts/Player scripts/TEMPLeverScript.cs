@@ -13,6 +13,7 @@ public class TEMPLeverScript : MonoBehaviour
     [SerializeField]
     GameObject bridge;
 
+    bool contact;
 
 
     PlayerInput playerInput;
@@ -34,22 +35,9 @@ public class TEMPLeverScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (contact)
         {
-            text.SetActive(true);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if(Interact.triggered)
+            if (Interact.triggered)
             {
                 player.GetComponent<EssentialMovement>().DeShittifyDash = true;
                 FacilityDiaolouge.SetActive(true);
@@ -59,11 +47,23 @@ public class TEMPLeverScript : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            text.SetActive(true);
+
+            contact = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             text.SetActive(false);
+
+            contact = false;
         }
     }
 }
