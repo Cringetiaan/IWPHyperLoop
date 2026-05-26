@@ -22,16 +22,16 @@ public class MagneticBlocks : MonoBehaviour
 
         IsPlusPolarity = PolarityVar.PlusPolarity;
 
-        if (IsPlusPolarity)
-        {
-            PlusPolarityVisual.SetActive(true);
-            MinusPolarityVisual.SetActive(false);
-        }
-        else
-        {
-            PlusPolarityVisual.SetActive(false);
-            MinusPolarityVisual.SetActive(true);
-        }
+        //if (IsPlusPolarity)
+        //{
+        //    PlusPolarityVisual.SetActive(true);
+        //    MinusPolarityVisual.SetActive(false);
+        //}
+        //else
+        //{
+        //    PlusPolarityVisual.SetActive(false);
+        //    MinusPolarityVisual.SetActive(true);
+        //}
     }
 
 

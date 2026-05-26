@@ -50,8 +50,10 @@ public class EssentialMovement : MonoBehaviour
     [SerializeField]
     MeshFilter model;
 
-    //Level2 mechanic
+    //Level2 mechanic + visul
     public Globalvariables PolarityVar;
+    public ParticleSystem PlusPolarityParticles;
+    public ParticleSystem MinusPolarityParticles;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -143,10 +145,12 @@ public class EssentialMovement : MonoBehaviour
             if(PolarityVar.PlusPolarity)
             {
                 PolarityVar.PlusPolarity = false;
+                MinusPolarityParticles.Play();
             }
             else
             {
                 PolarityVar.PlusPolarity = true;
+                PlusPolarityParticles.Play();
             }
            
         }
