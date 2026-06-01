@@ -25567,7 +25567,7 @@ MonoBehaviour:
   DashForce: 10
   DeShittifyDash: 0
   Cam: {fileID: 2034480778}
-  model: {fileID: 1501429814}
+  model: {fileID: 1501429811}
   PolarityVar: {fileID: 11400000, guid: 3fa7fbcb619e41f42b5c97004662e7e9, type: 2}
   PlusPolarityParticles: {fileID: 152931509}
   MinusPolarityParticles: {fileID: 565863323}
@@ -25614,12 +25614,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669094308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de981dc28f283854b804dde0eacebe42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlugTest
   timer: 5
+  electricityVFX: {fileID: 0}
+  electricityCheck: {fileID: 0}
 --- !u!1001 &669820497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60336,13 +60338,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1035347361855758597, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4235990227420300571, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: MinusPolarityVisual
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6964159205079025399, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -152.5
+      value: -137.17
       objectReference: {fileID: 0}
     - target: {fileID: 6964159205079025399, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -60350,7 +60356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964159205079025399, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -101.01
+      value: -111.09
       objectReference: {fileID: 0}
     - target: {fileID: 6964159205079025399, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60379,6 +60385,22 @@ PrefabInstance:
     - target: {fileID: 6964159205079025399, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564237408458232001, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564237408458232001, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564237408458232001, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564237408458232001, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8407816328779255184, guid: cf0932977bf515e46968cf1606b9a62f, type: 3}
       propertyPath: m_Name

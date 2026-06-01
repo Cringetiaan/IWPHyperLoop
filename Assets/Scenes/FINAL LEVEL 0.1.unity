@@ -16167,6 +16167,9 @@ MonoBehaviour:
   DeShittifyDash: 0
   Cam: {fileID: 2034480778}
   model: {fileID: 1501429811}
+  PolarityVar: {fileID: 0}
+  PlusPolarityParticles: {fileID: 0}
+  MinusPolarityParticles: {fileID: 0}
 --- !u!136 &669094317
 CapsuleCollider:
   m_ObjectHideFlags: 0
