@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class PlugTest : MonoBehaviour
 {
-    [SerializeField]
-    float timer = 1f;
+    public float timer;
 
-    [SerializeField]
-    GameObject electricityVFX;
+    public GameObject electricityVFX;
 
     [SerializeField]
     Material electricityCheck;
@@ -15,8 +13,6 @@ public class PlugTest : MonoBehaviour
     private void Start()
     {
        electricityVFX.SetActive(false);
-
-       //var electricityCheckMat = electricityCheck.GetComponent<Renderer>();
     }
 
 
@@ -51,7 +47,7 @@ public class PlugTest : MonoBehaviour
     }
 
 
-    void TimerOut()
+    public void TimerOut()
     {
         electricityVFX.SetActive(false);
     }

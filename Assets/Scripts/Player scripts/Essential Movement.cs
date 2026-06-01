@@ -48,7 +48,7 @@ public class EssentialMovement : MonoBehaviour
     CinemachineCamera Cam;
 
     [SerializeField]
-    MeshFilter model;
+    GameObject model;
 
     //Level2 mechanic + visul
     public Globalvariables PolarityVar;
