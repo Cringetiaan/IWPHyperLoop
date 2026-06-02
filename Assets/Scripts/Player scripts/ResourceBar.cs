@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class ResourceBar : MonoBehaviour
@@ -6,14 +7,17 @@ public class ResourceBar : MonoBehaviour
     [SerializeField]
     PlugTest plugTest;
 
-    [SerializeField]
-    GameObject bar;
+    public GameObject bar;
 
-    [SerializeField]
-    Image resource;
+    public Image resource;
 
-    float elapsedTime = 0;
+    public float elapsedTime = 0;
 
+    void Start()
+    {
+        bar.SetActive(false);
+        //elapsedTime = 0;
+    }
     void Update()
     {
         if (plugTest.electricityVFX.activeInHierarchy)

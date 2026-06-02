@@ -1,3 +1,4 @@
+using System.Xml;
 using UnityEngine;
 
 public class PlugTest : MonoBehaviour
@@ -7,7 +8,13 @@ public class PlugTest : MonoBehaviour
     public GameObject electricityVFX;
 
     [SerializeField]
-    Material electricityCheck;
+    GameObject sinkVFX;
+
+    [SerializeField]
+    GameObject barrier;
+
+    [SerializeField]
+    ResourceBar barx;
 
 
     private void Start()
@@ -15,37 +22,35 @@ public class PlugTest : MonoBehaviour
        electricityVFX.SetActive(false);
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Plug"))
+        if (electricityVFX.activeInHierarchy)
+        {
+            CancelInvoke(nameof(TimerOut));
+            TimerOut();
+            barx.bar.SetActive(false);
+            barx.elapsedTime = 0;
+            barx.resource.fillAmount = 1;
+            //barx.bar.SetActive(false);
+
+        }
+        else if (other.gameObject.CompareTag("Plug"))
         {
             electricityVFX.SetActive(true);
 
             Invoke(nameof(TimerOut), timer);
         }
 
-        if (other.gameObject.CompareTag("ElectricityCheck"))
+        if (other.gameObject.CompareTag("Sink"))
         {
             if (electricityVFX.activeInHierarchy)
             {
-                electricityCheck.SetColor("_BaseColor", Color.green);
-            }
-            else
-            {
-                electricityCheck.SetColor("_BaseColor", Color.red);
+                sinkVFX.SetActive(true);
+                barrier.SetActive(false);
+                TimerOut();
             }
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("ElectricityCheck"))
-        {
-            electricityCheck.SetColor("_BaseColor", Color.white);
-        }
-    }
-
 
     public void TimerOut()
     {
