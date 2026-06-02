@@ -42,7 +42,7 @@ public class EssentialMovement : MonoBehaviour
     //Do not touch ever
     public bool DeShittifyDash = false;
     bool dashReset = true;
-
+    public Animator BigBotAnimator;
 
     [SerializeField]
     CinemachineCamera Cam;
@@ -85,6 +85,11 @@ public class EssentialMovement : MonoBehaviour
         if (DesiredMoveDir.magnitude != 0f)
         {
             model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));
+            BigBotAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            BigBotAnimator.SetBool("isWalking", false);
         }
 
 
@@ -106,21 +111,28 @@ public class EssentialMovement : MonoBehaviour
         CamR.y = 0;
 
         DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
+
         if (GetIsGrounded())
         {
             moveGrounded = true;
+            BigBotAnimator.SetBool("isJumping", false);
+            BigBotAnimator.SetBool("isDashing", false);
+            BigBotAnimator.SetBool("isFalling", false);
         } else {
             moveGrounded = false;
+            BigBotAnimator.SetBool("isFalling", true);
         }
 
         if (JumpAction.triggered && GetIsGrounded())
         {
             jumpTrigger = true;
+            BigBotAnimator.SetBool("isJumping", true);
         }
 
         if (DashAction.triggered && dashReset == true)
         {
             dashReset = false;
+            BigBotAnimator.SetBool("isDashing", true);
             //normal dash
             if (DeShittifyDash)
             {
