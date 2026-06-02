@@ -18,14 +18,14 @@ public class DigistructOscillationInverted : MonoBehaviour
 
         col = obj.GetComponent<Collider>();
 
-        Invoke(nameof(Resume), 2.4f);
+        Invoke(nameof(Resume), 3f);
     }
 
     void Update()
     {
         if (!pause && goDown)
         {
-            amount -= 0.01f;
+            amount -= 0.02f;
             mat.SetFloat("_Amount", amount);
 
             if ((mat.GetFloat("_Amount")) <= 0)
@@ -37,7 +37,7 @@ public class DigistructOscillationInverted : MonoBehaviour
         }
         else if (!pause && !goDown)
         {
-            amount += 0.01f;
+            amount += 0.02f;
             mat.SetFloat("_Amount", amount);
 
             if ((mat.GetFloat("_Amount")) >= 1)

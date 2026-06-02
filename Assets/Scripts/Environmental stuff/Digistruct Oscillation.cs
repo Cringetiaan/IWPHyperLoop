@@ -24,7 +24,7 @@ public class DigistructOscillation : MonoBehaviour
     {
         if (!pause && goDown)
         {
-            amount -= 0.01f;
+            amount -= 0.02f;
             mat.SetFloat("_Amount", amount);
 
             if ((mat.GetFloat("_Amount")) <= 0)
@@ -36,7 +36,7 @@ public class DigistructOscillation : MonoBehaviour
         }
         else if (!pause && !goDown)
         {
-            amount += 0.01f;
+            amount += 0.02f;
             mat.SetFloat("_Amount", amount);
 
             if ((mat.GetFloat("_Amount")) >= 1)

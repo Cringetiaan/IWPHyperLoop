@@ -20,6 +20,8 @@ public class PlugTest : MonoBehaviour
     private void Start()
     {
        electricityVFX.SetActive(false);
+        sinkVFX.SetActive(false);
+        barrier.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +33,6 @@ public class PlugTest : MonoBehaviour
             barx.bar.SetActive(false);
             barx.elapsedTime = 0;
             barx.resource.fillAmount = 1;
-            //barx.bar.SetActive(false);
 
         }
         else if (other.gameObject.CompareTag("Plug"))
@@ -47,6 +48,7 @@ public class PlugTest : MonoBehaviour
             {
                 sinkVFX.SetActive(true);
                 barrier.SetActive(false);
+
                 TimerOut();
             }
         }
