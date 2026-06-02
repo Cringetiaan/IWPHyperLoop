@@ -42,7 +42,7 @@ public class EssentialMovement : MonoBehaviour
     //Do not touch ever
     public bool DeShittifyDash = false;
     bool dashReset = true;
-
+    public Animator BigBotAnimator;
 
     [SerializeField]
     CinemachineCamera Cam;
@@ -71,7 +71,10 @@ public class EssentialMovement : MonoBehaviour
     {
 
         ReadInput();
-        
+
+        Debug.Log(BigBotAnimator.GetBool("isDashing"));
+        //Debug.Log(BigBotAnimator.GetBool("isFalling"));
+
     }
 
     void FixedUpdate()
@@ -85,7 +88,9 @@ public class EssentialMovement : MonoBehaviour
         if (DesiredMoveDir.magnitude != 0f)
         {
             model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));
+           
         }
+        
 
 
     }
@@ -106,21 +111,36 @@ public class EssentialMovement : MonoBehaviour
         CamR.y = 0;
 
         DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
+
+        if(DesiredMoveDir.magnitude > 0f)
+        {
+            BigBotAnimator.SetBool("isWalking", true);
+        } else
+        {
+            BigBotAnimator.SetBool("isWalking", false);
+        }   
+
         if (GetIsGrounded())
         {
             moveGrounded = true;
+            BigBotAnimator.SetBool("isJumping", false);
+            BigBotAnimator.SetBool("isDashing", false);
+            BigBotAnimator.SetBool("isFalling", false);
         } else {
             moveGrounded = false;
+            BigBotAnimator.SetBool("isFalling", true);
         }
 
         if (JumpAction.triggered && GetIsGrounded())
         {
             jumpTrigger = true;
+            BigBotAnimator.SetBool("isJumping", true);
         }
 
         if (DashAction.triggered && dashReset == true)
         {
             dashReset = false;
+            BigBotAnimator.SetBool("isDashing", true);
             //normal dash
             if (DeShittifyDash)
             {
@@ -139,6 +159,8 @@ public class EssentialMovement : MonoBehaviour
                 Invoke(nameof(ResetGrav), 0.15f);
             }
         }
+
+       
 
         if (InteractAction.triggered)
         {
