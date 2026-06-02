@@ -71,7 +71,10 @@ public class EssentialMovement : MonoBehaviour
     {
 
         ReadInput();
-        
+
+        Debug.Log(BigBotAnimator.GetBool("isDashing"));
+        //Debug.Log(BigBotAnimator.GetBool("isFalling"));
+
     }
 
     void FixedUpdate()
@@ -85,12 +88,9 @@ public class EssentialMovement : MonoBehaviour
         if (DesiredMoveDir.magnitude != 0f)
         {
             model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));
-            BigBotAnimator.SetBool("isWalking", true);
+           
         }
-        else
-        {
-            BigBotAnimator.SetBool("isWalking", false);
-        }
+        
 
 
     }
@@ -111,6 +111,14 @@ public class EssentialMovement : MonoBehaviour
         CamR.y = 0;
 
         DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
+
+        if(DesiredMoveDir.magnitude > 0f)
+        {
+            BigBotAnimator.SetBool("isWalking", true);
+        } else
+        {
+            BigBotAnimator.SetBool("isWalking", false);
+        }   
 
         if (GetIsGrounded())
         {
@@ -151,6 +159,8 @@ public class EssentialMovement : MonoBehaviour
                 Invoke(nameof(ResetGrav), 0.15f);
             }
         }
+
+       
 
         if (InteractAction.triggered)
         {

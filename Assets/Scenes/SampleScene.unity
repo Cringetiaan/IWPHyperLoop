@@ -25568,7 +25568,7 @@ MonoBehaviour:
   DeShittifyDash: 0
   BigBotAnimator: {fileID: 1383853201}
   Cam: {fileID: 2034480778}
-  model: {fileID: 0}
+  model: {fileID: 1383853199}
   PolarityVar: {fileID: 11400000, guid: 3fa7fbcb619e41f42b5c97004662e7e9, type: 2}
   PlusPolarityParticles: {fileID: 152931509}
   MinusPolarityParticles: {fileID: 565863323}
