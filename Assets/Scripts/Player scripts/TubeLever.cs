@@ -31,7 +31,7 @@ public class TubeLever : MonoBehaviour
     //GameObject bridge;
 
     bool contact;
-
+    bool activated;
 
     PlayerInput playerInput;
     InputAction Interact;
@@ -39,6 +39,13 @@ public class TubeLever : MonoBehaviour
     //Dialogue window
     [SerializeField]
     GameObject FacilityDiaolouge;
+
+    [SerializeField]
+    GameObject PlayerCamera;
+    [SerializeField]
+    GameObject CutsceneCamera;
+    [SerializeField]
+    GameObject Dialogue;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -53,18 +60,26 @@ public class TubeLever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (contact)
+        if (contact && !activated)
         {
             if (Interact.triggered)
             {
                 player.GetComponent<EssentialMovement>().DeShittifyDash = true;
-                FacilityDiaolouge.SetActive(true);
+                //FacilityDiaolouge.SetActive(true);
 
                 //bridge.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                 //rotate.rotationSpeed = 0f;
 
+                activated = true;
+
                 transition = true;
+
+                PlayerCamera.SetActive(false);
+                CutsceneCamera.SetActive(true);
+
+                Dialogue.SetActive(true);
+               
             }
         }
 

@@ -11,7 +11,7 @@ public class Dialoguemanager : MonoBehaviour
     TextAsset dialogueFile;
     GameObject ThisPrefab;
 
-    List<string> CurrentDialogueWindow = new List<string>();
+    public List<string> CurrentDialogueWindow = new List<string>();
 
 
     //Voice lines
@@ -24,7 +24,9 @@ public class Dialoguemanager : MonoBehaviour
     PlayerInput playerInput;
     [SerializeField]
     InputAction DialogueProgression;
-    int dialogueCount = 0;
+    public int dialogueCount = 0;
+
+    public bool exitCutscene;
 
 
     //Audio source for voice lines - changed often
@@ -57,6 +59,7 @@ public class Dialoguemanager : MonoBehaviour
             dialogueCount++;
             if (dialogueCount >= CurrentDialogueWindow.Count)
             {
+                exitCutscene = true;
                 ThisPrefab.SetActive(false);
             }
         }

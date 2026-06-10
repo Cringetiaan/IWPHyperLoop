@@ -40,7 +40,14 @@ public class TrainLever : MonoBehaviour
     bool transition = false;
 
     bool contact;
+    bool activated;
 
+    [SerializeField]
+    GameObject PlayerCamera;
+    [SerializeField]
+    GameObject CutsceneCamera;
+    [SerializeField]
+    GameObject Dialogue;
 
     PlayerInput playerInput;
     InputAction Interact;
@@ -65,13 +72,20 @@ public class TrainLever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (contact)
+        if (contact && !activated)
         {
             if (Interact.triggered)
             {
                 //FacilityDiaolouge.SetActive(true);
 
+                activated = true;
+
                 transition = true;
+
+                PlayerCamera.SetActive(false);
+                CutsceneCamera.SetActive(true);
+
+                Dialogue.SetActive(true);
             }
         }
 
