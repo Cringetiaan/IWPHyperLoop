@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Height Fog Mat
+  m_Name: Fog Plane Mat
   m_Shader: {fileID: -6465566751694194690, guid: 2a4e7684403a97141883b002c6d6a96f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
