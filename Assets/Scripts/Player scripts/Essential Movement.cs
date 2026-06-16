@@ -12,9 +12,12 @@ public class EssentialMovement : MonoBehaviour
 
     Vector3 MoveInput;
     Vector3 DesiredMoveDir;
-    
 
-    
+    //Mika - Coyote Time
+    float coyoteTime = 0.3f;
+    float coyoteTimeCounter = 0.3f;
+
+
     PlayerInput playerInput;
     InputAction MoveAction;
     InputAction JumpAction;
@@ -131,7 +134,7 @@ public class EssentialMovement : MonoBehaviour
             BigBotAnimator.SetBool("isFalling", true);
         }
 
-        if (JumpAction.triggered && GetIsGrounded())
+        if (JumpAction.triggered && coyoteTimeCounter > 0f)
         {
             jumpTrigger = true;
             BigBotAnimator.SetBool("isJumping", true);
@@ -196,12 +199,13 @@ public class EssentialMovement : MonoBehaviour
         }
     }
 
+    //Mika
     void ResetGrav()
     {
         rb.useGravity = true;
     }
 
-
+    //Mika
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
@@ -210,11 +214,25 @@ public class EssentialMovement : MonoBehaviour
         }
     }
 
+    //Mika
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
         {
             transform.SetParent(null);
+        }
+    }
+
+    //Mika - Coyote Time
+    void CoyoteTime()
+    {
+        if (GetIsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
     }
 }

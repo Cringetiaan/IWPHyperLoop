@@ -1,3 +1,4 @@
-hey
-this is a placeholder
-please put it actual dialogue
+The pods lie at the center of Hyperloop's passenger experience.
+Current designs see them being around 2.23m in diameter, their interiors offering room comparable to that of modern passenger trains.
+Engineered for safety and comfort alike, they provide a smooth traveling experience - all while reaching top speeds of up to 1220 km/h.
+Even then, the maximum innertial acceleration passengers are set to experience is still comparable to that of a commercial airliner.

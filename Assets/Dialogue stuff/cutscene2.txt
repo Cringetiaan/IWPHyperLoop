@@ -1,3 +1,5 @@
-hey
-this is a placeholder
-please put it actual dialogue
+The rails serve as the backbone of the Hyperloop system, providing a stable and efficient track for the passenger pods to travel on.
+Enabled by magnetic levitation technology, they forgo conventional wheels in favor of having the pods levitating a short distance above them.
+This eliminates friction from the equation, allowing for higher top speeds as well as smoother acceleration and deceleration.
+This technology has been around for quite a while, with the Shanghai Maglev Train (SMT) being in commercial use since 2004.
+Powered by German Transrapid technology, this train completes a 30km journey in just 8 minutes and 10 seconds!

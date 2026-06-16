@@ -96,7 +96,7 @@ public class TrainLever : MonoBehaviour
             digiTrain3.SetActive(true);
             digiTrain4.SetActive(true);
 
-            amount -= 0.005f;
+            amount -= 0.001f;
             digiMat1.SetFloat("_Amount", amount);
             digiMat2.SetFloat("_Amount", amount);
             digiMat3.SetFloat("_Amount", amount);
