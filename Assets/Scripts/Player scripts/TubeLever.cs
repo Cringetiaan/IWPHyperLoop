@@ -87,7 +87,7 @@ public class TubeLever : MonoBehaviour
         {
             digiTube.SetActive(true);
 
-            amount -= 0.005f;
+            amount -= 0.002f;
             digiMat.SetFloat("_Amount", amount);
 
             if ((digiMat.GetFloat("_Amount")) <= 0)

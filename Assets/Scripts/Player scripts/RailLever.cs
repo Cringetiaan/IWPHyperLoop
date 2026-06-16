@@ -82,7 +82,7 @@ public class RailLever : MonoBehaviour
             digiRail1.SetActive(true);
             digiRail2.SetActive(true);
 
-            amount -= 0.005f;
+            amount -= 0.001f;
             digiMat1.SetFloat("_Amount", amount);
             digiMat2.SetFloat("_Amount", amount);
 
