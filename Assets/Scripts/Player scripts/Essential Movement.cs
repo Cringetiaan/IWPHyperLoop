@@ -14,8 +14,8 @@ public class EssentialMovement : MonoBehaviour
     Vector3 DesiredMoveDir;
 
     //Mika - Coyote Time
-    float coyoteTime = 0.3f;
-    float coyoteTimeCounter = 0.3f;
+    float coyoteTime = 0.2f;
+    float coyoteTimeCounter = 0.2f;
 
 
     PlayerInput playerInput;
@@ -72,12 +72,12 @@ public class EssentialMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         ReadInput();
 
-        Debug.Log(BigBotAnimator.GetBool("isDashing"));
+        //Debug.Log(BigBotAnimator.GetBool("isDashing"));
         //Debug.Log(BigBotAnimator.GetBool("isFalling"));
 
+        CoyoteTime();
     }
 
     void FixedUpdate()
@@ -90,12 +90,8 @@ public class EssentialMovement : MonoBehaviour
 
         if (DesiredMoveDir.magnitude != 0f)
         {
-            model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));
-           
+            model.transform.rotation = Quaternion.LookRotation(new Vector3(DesiredMoveDir.x, 0, DesiredMoveDir.z));  
         }
-        
-
-
     }
 
     //Ground check
@@ -134,7 +130,7 @@ public class EssentialMovement : MonoBehaviour
             BigBotAnimator.SetBool("isFalling", true);
         }
 
-        if (JumpAction.triggered && coyoteTimeCounter > 0f)
+        if ((JumpAction.triggered) && (coyoteTimeCounter > 0f) && (jumpTrigger == false))
         {
             jumpTrigger = true;
             BigBotAnimator.SetBool("isJumping", true);
@@ -163,8 +159,6 @@ public class EssentialMovement : MonoBehaviour
             }
         }
 
-       
-
         if (InteractAction.triggered)
         {
             if(PolarityVar.PlusPolarity)
@@ -181,6 +175,19 @@ public class EssentialMovement : MonoBehaviour
         }
     }
 
+    //Mika - Coyote Time
+    void CoyoteTime()
+    {
+        if (GetIsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
     void MovePlayer() 
     {
         if (moveGrounded == true) 
@@ -193,6 +200,7 @@ public class EssentialMovement : MonoBehaviour
 
         if (jumpTrigger == true)
         {
+            coyoteTimeCounter = 0;
             jumpTrigger = false;
             rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
             dashReset = true;
@@ -220,19 +228,6 @@ public class EssentialMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))
         {
             transform.SetParent(null);
-        }
-    }
-
-    //Mika - Coyote Time
-    void CoyoteTime()
-    {
-        if (GetIsGrounded())
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
         }
     }
 }
