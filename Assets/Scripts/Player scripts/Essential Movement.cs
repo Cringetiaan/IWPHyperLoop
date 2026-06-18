@@ -13,10 +13,10 @@ public class EssentialMovement : MonoBehaviour
     Vector3 MoveInput;
     Vector3 DesiredMoveDir;
 
-    //Mika - Coyote Time
+    //Mika - Coyote Time Variables
     float coyoteTime = 0.2f;
     float coyoteTimeCounter = 0.2f;
-
+    InputAction SwitchPolarityAction;
 
     PlayerInput playerInput;
     InputAction MoveAction;
@@ -68,14 +68,14 @@ public class EssentialMovement : MonoBehaviour
         DashAction = playerInput.actions["Dash"];
         InteractAction = playerInput.actions["Interact"];
 
+        //Mika
+        SwitchPolarityAction = playerInput.actions["SwitchPolarity"];
+
     }
     // Update is called once per frame
     void Update()
     {
         ReadInput();
-
-        //Debug.Log(BigBotAnimator.GetBool("isDashing"));
-        //Debug.Log(BigBotAnimator.GetBool("isFalling"));
 
         CoyoteTime();
     }
@@ -159,7 +159,7 @@ public class EssentialMovement : MonoBehaviour
             }
         }
 
-        if (InteractAction.triggered)
+        if (SwitchPolarityAction.triggered)
         {
             if(PolarityVar.PlusPolarity)
             {

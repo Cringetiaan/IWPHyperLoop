@@ -76,6 +76,8 @@ public class TrainLever : MonoBehaviour
         {
             if (Interact.triggered)
             {
+                text.SetActive(false);
+
                 //FacilityDiaolouge.SetActive(true);
 
                 activated = true;

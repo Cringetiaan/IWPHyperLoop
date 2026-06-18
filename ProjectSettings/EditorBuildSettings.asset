@@ -8,14 +8,20 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: fd58cd907c7d88249ba5578ad2484df7
   - enabled: 0
     path: Assets/Scenes/Sava's scene.unity
     guid: 9b1f74e65e612d941b8c095f70232452
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levels/IWP DEMO LEVEL.unity
     guid: f9781310b63028f4a83f6ba3fd3ace79
+  - enabled: 1
+    path: Assets/Scenes/levels/Menu (Mika).unity
+    guid: 4a5c5549c1e3347459d9d60fa30de5f1
+  - enabled: 1
+    path: Assets/Scenes/levels/FINAL LEVEL.unity
+    guid: c2e8f75817b82ea4a8b5b264d50ecbc7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 343fa90c1404e974291e4934f7463974, type: 3}

@@ -26,30 +26,36 @@ public class PlugTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (electricityVFX.activeInHierarchy)
+        if (other.gameObject.CompareTag("Plug"))
         {
-            CancelInvoke(nameof(TimerOut));
-            TimerOut();
-            barx.bar.SetActive(false);
-            barx.elapsedTime = 0;
-            barx.resource.fillAmount = 1;
+            if (electricityVFX.activeInHierarchy)
+            {
+                CancelInvoke(nameof(TimerOut));
+                TimerOut();
+                barx.bar.SetActive(false);
+                barx.elapsedTime = 0;
+                barx.resource.fillAmount = 1;
 
+            }
+            else
+            {
+                electricityVFX.SetActive(true);
+
+                Invoke(nameof(TimerOut), timer);
+            }
         }
-        else if (other.gameObject.CompareTag("Plug"))
-        {
-            electricityVFX.SetActive(true);
-
-            Invoke(nameof(TimerOut), timer);
-        }
-
-        if (other.gameObject.CompareTag("Sink"))
+        else if (other.gameObject.CompareTag("Sink"))
         {
             if (electricityVFX.activeInHierarchy)
             {
                 sinkVFX.SetActive(true);
                 barrier.SetActive(false);
 
+                CancelInvoke(nameof(TimerOut));
                 TimerOut();
+                barx.bar.SetActive(false);
+                barx.elapsedTime = 0;
+                barx.resource.fillAmount = 1;
             }
         }
     }

@@ -1,5 +1,4 @@
 There are a couple of magnetic blocks lying around that you can use to get to tricky places!
-If you press 'E' you can swap your polarity. Red means you are pulled towards the block, blue forced away.
-You can see the area of effect the blocks have by the transparent orbs around them.
-It is your convenient Magnetic Robo Vision that you have for some reason.
-Don't ask me why you have it I am not the one that designed you!
+If you press 'Q' you can swap your polarity. Red will have you pulled towards the block, blue pushed away.
+You can see the area of effect the blocks have by the magnetic fields around them.
+Don't ask ME why you can see them - I'm not the one who designed you!

@@ -63,6 +63,8 @@ public class RailLever : MonoBehaviour
         {
             if (Interact.triggered)
             {
+                text.SetActive(false);
+
                 //FacilityDiaolouge.SetActive(true);
 
 

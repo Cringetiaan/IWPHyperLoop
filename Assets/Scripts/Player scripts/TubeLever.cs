@@ -64,6 +64,8 @@ public class TubeLever : MonoBehaviour
         {
             if (Interact.triggered)
             {
+                text.SetActive(false);
+
                 player.GetComponent<EssentialMovement>().DeShittifyDash = true;
                 //FacilityDiaolouge.SetActive(true);
 

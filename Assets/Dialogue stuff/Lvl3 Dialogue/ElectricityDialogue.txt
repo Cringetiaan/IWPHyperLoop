@@ -1,5 +1,5 @@
 You see that electricity pole right there?
-Use it to power the rails!
-Just walk through it to charge your temporary battery.
-Go to the other pole with charge left!
-You have a limited time to get from one pole to another, be quick!
+That's the last thing we need - use it to power the Hyperloop!
+Just touch it to briefly overcharge your battery.
+Touching the other pole will dump the excess charge in it!
+This charge will eventually dissipate though, so be quick!
