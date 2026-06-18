@@ -40,6 +40,7 @@ public class EssentialMovement : MonoBehaviour
 
     bool moveGrounded = false;
     bool jumpTrigger = false;
+    bool dashTrigger = false;
 
 
     //Do not touch ever
@@ -111,52 +112,37 @@ public class EssentialMovement : MonoBehaviour
 
         DesiredMoveDir = (CamF * MoveInput.z + CamR * MoveInput.x).normalized;
 
-        if(DesiredMoveDir.magnitude > 0f)
-        {
-            BigBotAnimator.SetBool("isWalking", true);
-        } else
-        {
-            BigBotAnimator.SetBool("isWalking", false);
-        }   
+        //if(DesiredMoveDir.magnitude > 0f)
+        //{
+        //    BigBotAnimator.SetBool("isWalking", true);
+        //} else
+        //{
+        //    BigBotAnimator.SetBool("isWalking", false);
+        //}   
 
         if (GetIsGrounded())
         {
             moveGrounded = true;
-            BigBotAnimator.SetBool("isJumping", false);
-            BigBotAnimator.SetBool("isDashing", false);
-            BigBotAnimator.SetBool("isFalling", false);
+            //BigBotAnimator.SetBool("isJumping", false);
+            //BigBotAnimator.SetBool("isDashing", false);
+            //BigBotAnimator.SetBool("isFalling", false);
         } else {
             moveGrounded = false;
-            BigBotAnimator.SetBool("isFalling", true);
+            //BigBotAnimator.SetBool("isFalling", true);
         }
 
         if ((JumpAction.triggered) && (coyoteTimeCounter > 0f) && (jumpTrigger == false))
         {
             jumpTrigger = true;
-            BigBotAnimator.SetBool("isJumping", true);
+            //BigBotAnimator.SetBool("isJumping", true);
         }
 
         if (DashAction.triggered && dashReset == true)
         {
             dashReset = false;
-            BigBotAnimator.SetBool("isDashing", true);
-            //normal dash
-            if (DeShittifyDash)
-            {
-                rb.AddForce(DesiredMoveDir * DashForce, ForceMode.VelocityChange);
-
-                rb.useGravity = false;
-                Invoke(nameof(ResetGrav), 0.25f);
-            }
-
-            //garbo dash
-            else
-            {
-                rb.AddForce(DesiredMoveDir * DashForce * 0.4f, ForceMode.VelocityChange);
-
-                rb.useGravity = false;
-                Invoke(nameof(ResetGrav), 0.15f);
-            }
+            //BigBotAnimator.SetBool("isDashing", true);
+            
+            dashTrigger = true;
         }
 
         if (SwitchPolarityAction.triggered)
@@ -190,20 +176,62 @@ public class EssentialMovement : MonoBehaviour
 
     void MovePlayer() 
     {
+        if (DesiredMoveDir.magnitude > 0f)
+        {
+            BigBotAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            BigBotAnimator.SetBool("isWalking", false);
+        }
+
         if (moveGrounded == true) 
         {
+            BigBotAnimator.SetBool("isJumping", false);
+            BigBotAnimator.SetBool("isDashing", false);
+            BigBotAnimator.SetBool("isFalling", false);
+
             rb.AddForce(DesiredMoveDir * MoveSpeed, ForceMode.Acceleration);
         } else
         {
+            BigBotAnimator.SetBool("isFalling", true);
+
             rb.AddForce(DesiredMoveDir * MoveSpeed * 0.5f, ForceMode.Acceleration);
         }
 
         if (jumpTrigger == true)
         {
+            BigBotAnimator.SetBool("isJumping", true);
+
             coyoteTimeCounter = 0;
             jumpTrigger = false;
             rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
             dashReset = true;
+        }
+
+        if (dashTrigger == true)
+        {
+            BigBotAnimator.SetBool("isDashing", true);
+
+            dashTrigger = false;
+
+            //normal dash
+            if (DeShittifyDash)
+            {
+                rb.AddForce(DesiredMoveDir * DashForce, ForceMode.VelocityChange);
+
+                rb.useGravity = false;
+                Invoke(nameof(ResetGrav), 0.25f);
+            }
+
+            //garbo dash
+            else
+            {
+                rb.AddForce(DesiredMoveDir * DashForce * 0.4f, ForceMode.VelocityChange);
+
+                rb.useGravity = false;
+                Invoke(nameof(ResetGrav), 0.15f);
+            }
         }
     }
 

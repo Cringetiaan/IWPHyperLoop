@@ -21,11 +21,11 @@ public class DigistructOscillationInverted : MonoBehaviour
         Invoke(nameof(Resume), 3f);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!pause && goDown)
         {
-            amount -= 0.01f;
+            amount -= 0.025f;
             mat.SetFloat("_Amount", amount);
 
             if ((mat.GetFloat("_Amount")) <= 0)
@@ -37,7 +37,7 @@ public class DigistructOscillationInverted : MonoBehaviour
         }
         else if (!pause && !goDown)
         {
-            amount += 0.01f;
+            amount += 0.025f;
             mat.SetFloat("_Amount", amount);
 
             if ((mat.GetFloat("_Amount")) >= 1)
