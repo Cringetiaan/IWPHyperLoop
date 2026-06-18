@@ -29,12 +29,18 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        //Mika
+        Cursor.visible = false;
     }
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+
+        //Mika
+        Cursor.visible = true;
     }
 
     public void LoadMenu()

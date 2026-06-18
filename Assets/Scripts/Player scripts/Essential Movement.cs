@@ -13,10 +13,11 @@ public class EssentialMovement : MonoBehaviour
     Vector3 MoveInput;
     Vector3 DesiredMoveDir;
 
-    //Mika - Coyote Time Variables
+    //Mika
     float coyoteTime = 0.2f;
     float coyoteTimeCounter = 0.2f;
     InputAction SwitchPolarityAction;
+    //Mika
 
     PlayerInput playerInput;
     InputAction MoveAction;
@@ -62,6 +63,8 @@ public class EssentialMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Cursor.visible = false;
+
         //Assigning the player input and actions
         playerInput = GetComponent<PlayerInput>();
         MoveAction = playerInput.actions["Move"];
@@ -79,6 +82,12 @@ public class EssentialMovement : MonoBehaviour
         ReadInput();
 
         CoyoteTime();
+
+
+        //if (jumpTrigger == true)
+        //{
+        //    coyoteTimeCounter = 0;
+        //}
     }
 
     void FixedUpdate()
@@ -201,10 +210,9 @@ public class EssentialMovement : MonoBehaviour
 
         if (jumpTrigger == true)
         {
-            BigBotAnimator.SetBool("isJumping", true);
-
-            coyoteTimeCounter = 0;
             jumpTrigger = false;
+            BigBotAnimator.SetBool("isJumping", true);
+            coyoteTimeCounter = 0;
             rb.AddForce(0, JumpForce, 0, ForceMode.VelocityChange);
             dashReset = true;
         }
@@ -246,6 +254,7 @@ public class EssentialMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform"))
         {
+            rb.interpolation = RigidbodyInterpolation.None;
             transform.SetParent(collision.transform);
         }
     }
@@ -255,6 +264,7 @@ public class EssentialMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform"))
         {
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
             transform.SetParent(null);
         }
     }
